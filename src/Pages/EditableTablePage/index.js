@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Button, Input, Table } from "antd";
+import { Button, Input, Table, message } from "antd";
 import { externalDataSource } from "../../Fixtures";
 
 import "./index.css";
@@ -32,7 +32,8 @@ export default () => {
       setSelectedRowKeys([]);
       textInputRemarksRef.current.state.value = "";
       setLoading(false);
-    }, 500);
+      message.success("Remarks updated for the selected rows successfully");
+    }, 1000);
   };
 
   const selectRow = (record) => {
@@ -72,8 +73,11 @@ export default () => {
         >
           Update Remarks
         </Button>
-        <span style={{ marginLeft: 8 }}>
-          {hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}
+        <span className="show-selected-items">
+          {hasSelected &&
+            (selectedRowKeys.length > 1
+              ? `Selected ${selectedRowKeys.length} items`
+              : `Selected ${selectedRowKeys.length} item`)}
         </span>
       </div>
       <Table
@@ -85,6 +89,7 @@ export default () => {
             selectRow(record);
           },
         })}
+        pagination={false}
       />
     </div>
   );

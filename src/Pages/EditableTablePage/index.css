@@ -8,3 +8,8 @@
   margin-right: 5px;
   flex: 1;
 }
+
+.edit-action-container .show-selected-items {
+  margin-left: 5px;
+  align-self: center;
+}
